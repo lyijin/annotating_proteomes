@@ -139,6 +139,8 @@ To get the best hit with GO terms, run
 
 ``get_top_hit_with_amigo_annot.py spis_vs_trembl.t20.tsv > spis_vs_trembl.tGO.tsv``
 
+The genes in ``*.tGO.tsv`` are guaranteed to have GO terms annotated to it, which circumvents the issue I noticed years ago (of best hits occasionally not having annotated GO terms).
+
 Assigning GO terms
 ------------------
 The two files you need for this step are:
@@ -152,7 +154,7 @@ Remember that my example uses "spis" as the 4-letter species code, and it's in a
 
 ``create_go_annots_sprot_trembl.py spis``
 
-It should produce four files, the most important being ``spis_go_annots.all.tsv``. The ``bp``, ``cc`` and ``mf`` files correspond to only "biological process", "cellular component" and "molecular function" GO terms respectively. I personally don't really find them that useful, but you might.
+It should produce four files, the most important being ``spis_go_annots.all.tsv``. Files with ``bp``, ``cc`` and ``mf`` nestled within the filenames correspond to genes annotated with "biological process"-, "cellular component"- and "molecular function"-related terms respectively. I personally don't really find them that useful, but if you're interested in only analysing a particular class of GO terms, you could use these files.
 
 Sidenote: the file in the form of ``*_go_annots.all.tsv`` is what I use in my functional enrichment pipeline.
 
@@ -170,10 +172,10 @@ To compile the table, run
 
 ``create_top_hit_sprot_trembl_nr.py spis Spis.genome.annotation.pep.longest.fa > spis_tabulated_annots.tsv``
 
-That's it! I usually format the ``.tsv`` file (tab-separated text file) into an Excel sheet for publication, but for normal bioinformatics-y work, I use the ``.tsv`` file quite a bit as it's easily parsed.
+That's it! I usually format the ``.tsv`` file (tab-separated text file) into an Excel sheet, and delete a few unnecessary columns for publication purposes; for normal bioinformatics-y work, I use the ``.tsv`` file quite a bit as it's easily parsed.
 
 Troubleshooting & further modification
 --------------------------------------
-If the script demands for files that I didn't explain how to obtain, let me know. I might have missed a file or two, it's--admittedly--a pretty convoluted pipeline.
+If the scripts demand for files that I didn't explain how to obtain, let me know. I might have missed a file or two, it's--admittedly--a pretty convoluted pipeline.
 
 The scripts ``create_go_annots_sprot_trembl.py`` and ``create_top_hit_sprot_trembl_nr.py`` have quite a few optional parameters to it. Check how they're used by calling the script with the ``-h`` flag, or read the source code.
