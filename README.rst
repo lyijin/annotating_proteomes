@@ -58,7 +58,7 @@ Convert these fasta files into BLAST databases.
 
 ``makeblastdb -in sprot -dbtype prot -title "UniProt/Swiss-Prot (Jan 2018)" -parse_seqids``
 
-``makeblastdb -in sprot -dbtype prot -title "UniProt/Swiss-Prot (Jan 2018)" -parse_seqids``
+``makeblastdb -in trembl -dbtype prot -title "UniProt/TrEMBL (Jan 2018)" -parse_seqids``
 
 For nr, this is a bit hacky.
 
@@ -97,7 +97,7 @@ So yes, I presented a half-truth earlier for ease of understanding. The priority
 2. If the gene model has hits against TrEMBL, grab the top 20 hits. Check whether the best hit has GO terms. If not, check second best hit. If not, check third best... Otherwise, if none of the hits have GO terms assigned to them,
 3. If the gene model has a hit against nr, take it. Otherwise, gene model is unannotated.
 
-From experience, ``blastp`` against nr takes the longest (hence why I run it with more threads). Do the next section while the ``blastp`` searches are running.
+From experience, ``blastp`` against nr is much much slower than the other two (hence why I run it with more threads). Do the next section while the ``blastp`` searches are running.
 
 Preparing GO files
 ------------------
@@ -129,7 +129,7 @@ In the same folder, run
 
 ``parse_blast_xml.py --table -e 1e-5 -t 1 spis_vs_nr.blastp.xml > spis_vs_nr.t1.tsv``
 
-The ``-e`` flag controls the e-value cutoff. I tend to use 10^-5 (i.e. 1e-5).
+The ``-e`` flag controls the e-value cutoff. I tend to use 10\ :sup:`-5` (hence ``-e 1e-5``).
 
 These commands parses the XML files into tabulated BLAST results. At this point, you can save space by compressing the XML files (try not to delete them, these files took weeks to produce--they're actually stuff I archive in case things go wrong downstream).
 
