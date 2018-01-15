@@ -65,7 +65,7 @@ For nr, this is a bit hacky.
 1. Go to ftp://ftp.ncbi.nlm.nih.gov/blast/db/ and look for files in the pattern of nr.*.tar.gz.
 2. Make a note of what the largest number is (79, as of Jan 2018. It's insane how fast these numbers have incremented!).
 3. Edit ``ftps_get_nr.sh`` line 3, and put in that largest number (``for a in {00..79}``).
-4. Run it, you might need to wait for a day or two. Each file is ~500 MB, so 78 files would be ~40 GB. I hope you've no data caps.
+4. Run it, you might need to wait for a day or two. Each file is ~500 MB, so all files would be ~40 GB. I hope you've no data caps.
 5. Decompress everything (``for a in *.tar.gz; do tar zxvf ${a}; done``). The compressed 40 GB will become 150 GB or so. Make sure you've got loads of free HDD space.
 6. Optional cleanup: to free space, feel free to delete the downloaded ``*.tar.gz`` files, ``sprot``, and ``trembl``.
 
