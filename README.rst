@@ -107,9 +107,13 @@ GO annotation file: http://www.geneontology.org/gene-associations/goa_uniprot_al
 
 GO term hierarchy: http://purl.obolibrary.org/obo/go/go-basic.obo
 
-Run the shell script ``parse_gp_assoc.sh`` to produce ``goa_uniprot_all.parsed.gaf`` and ``goa_uniprot_all.unique_ids.txt``.
+Run the shell script ``parse_gp_assoc.sh`` to produce ``goa_uniprot_all.parsed.gaf`` and ``goa_uniprot_all.unique_ids.txt``. As these are shell scripts, they are not as... adaptable as Python scripts are to changes in the GOA files. I have described what the commands aim to achieve in the shell scripts, so if you're getting weird crashes later on, troubleshoot this shell script as well.
 
-While we're at it, modify line 35 of ``parse_go_obo.py`` (``go_term_file = open('...')``) to point to where you kept ``go-basic.obo``. This script is required later.
+While we're at it, there are three lines in the Python scripts that you have to modify to point to where you kept those files you downloaded and processed. Use absolute paths in the filenames please.
+
+1. Modify line 64 of ``create_go_annots_sprot_trembl.py`` to where you kept ``goa_uniprot_all.parsed.gaf``.
+2. Modify line 53 of ``get_top_hit_with_amigo_annot.py`` to where you kept ``goa_uniprot_all.unique_ids.txt``.
+3. Modify line 35 of ``parse_go_obo.py`` to where you kept ``go-basic.obo``.
 
 Wait for the ``blastp`` searches to finish.
 
