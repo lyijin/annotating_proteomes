@@ -84,6 +84,8 @@ for t in transcript_uniprot_id:
             expanded_go_terms = goa_data[transcript_uniprot_id[t]]
         else:
             for u in goa_data[transcript_uniprot_id[t]]:
+                # NOTE: if the uncommented line crashes, modify the line to
+                # expanded_go_terms += parse_go_obo.get_all_parent_terms(parse_go_obo.translate_alt_id(u))
                 expanded_go_terms += parse_go_obo.get_all_parent_terms(u)
 
     associated_go_terms[t] = sorted(list(set(expanded_go_terms)))
